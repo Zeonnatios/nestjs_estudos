@@ -6,8 +6,6 @@ import {
   Delete,
   Param,
   Body,
-  HttpCode,
-  HttpStatus,
 } from '@nestjs/common';
 import { CoursesService } from './courses.service';
 
@@ -17,27 +15,26 @@ export class CoursesController {
 
   @Get()
   findAll() {
-    return 'Listagem de Cursos';
+    return this.coursesService.findAll();
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return `Curso ${id}`;
+    return this.coursesService.findOne(id);
   }
 
   @Post()
-  @HttpCode(HttpStatus.NO_CONTENT)
-  create(@Body() body) {
-    return body;
+  create(@Body() body: any) {
+    return this.coursesService.create(body);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() body) {
-    return `Att do curso ${id}`;
+    return this.coursesService.update(id, body);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return `Remove this course ${id}`;
+    return this.coursesService.remove(id);
   }
 }
