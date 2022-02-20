@@ -2,6 +2,8 @@ import {
   Controller,
   Get,
   Post,
+  Patch,
+  Delete,
   Param,
   Body,
   HttpCode,
@@ -24,5 +26,15 @@ export class CoursesController {
   @HttpCode(HttpStatus.NO_CONTENT)
   create(@Body() body) {
     return body;
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() body) {
+    return `Att do curso ${id}`;
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return `Remove this course ${id}`;
   }
 }
